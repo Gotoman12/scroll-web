@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'arjunckm/test-dev:latest'
         DEPLOY_FILE  = 'deploy.yaml'
-        DOMAIN       = 'arjun-moulya.site'
+        DOMAIN       = 'aurum-pet.duckdns.org'
     }
 
     stages {
@@ -114,5 +114,6 @@ pipeline {
         }
     }
 }
+
 
 
