@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'manjukolkar007/test-dev:latest'
+        DOCKER_IMAGE = 'arjunckm/test-dev:latest'
         DEPLOY_FILE  = 'deploy.yaml'
-        DOMAIN       = 'micro123.duckdns.org'
+        DOMAIN       = 'arjun-moulya.site'
     }
 
     stages {
@@ -42,7 +42,7 @@ pipeline {
 
         stage('Clone Repository') {
             steps {
-                git branch: "${env.BRANCH_NAME}", url: 'https://github.com/manjukolkar/scroll-web.git'
+                git branch: "${env.BRANCH_NAME}", url: 'https://github.com/Gotoman12/scroll-web.git'
             }
         }
 
@@ -58,7 +58,7 @@ pipeline {
         stage('Login to Docker Hub') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    withCredentials([usernamePassword(credentialsId: 'DOCKER_CRED', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                         sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin"
                     }
                 }
@@ -114,4 +114,5 @@ pipeline {
         }
     }
 }
+
 
